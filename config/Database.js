@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('new_meet', 'root', 'IniPasswordBaru123!',{
-    host:'localhost',
-    dialect:'mysql'
+const db = new Sequelize('meeting_booking_db', 'root', '', {
+    host: "localhost",
+    dialect: "mysql"
 });
 
-export default db;
+export default db; 

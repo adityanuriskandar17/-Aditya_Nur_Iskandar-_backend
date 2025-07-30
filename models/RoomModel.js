@@ -57,4 +57,4 @@ export default MeetingBooking;
 
 (async ()=>{
     await db.sync()
-})()
+})() 

@@ -174,4 +174,4 @@ export const getBookingsByUnit = async (req, res) => {
         console.error('error message', error.message)
         res.status(500).json({msg: error.message})
     }
-}
+} 

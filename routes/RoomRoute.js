@@ -22,6 +22,4 @@ route.delete('/meeting-bookings/:id', deleteMeetingBooking)
 route.get('/meeting-bookings/date/:date', getBookingsByDate)
 route.get('/meeting-bookings/unit/:unit', getBookingsByUnit)
 
-export default route;
-
-
+export default route; 
