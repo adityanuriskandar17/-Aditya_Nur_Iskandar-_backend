@@ -1,0 +1,409 @@
+# Meeting Booking API - Postman Collection Examples
+
+# ========================================
+# 1. GET ALL MEETING BOOKINGS
+# ========================================
+GET http://localhost:5000/meeting-bookings
+
+###
+# ========================================
+# 2. GET MEETING BOOKING BY ID
+# ========================================
+GET http://localhost:5000/meeting-bookings/1
+
+###
+# ========================================
+# 3. GET BOOKINGS BY DATE
+# ========================================
+GET http://localhost:5000/meeting-bookings/date/2024-01-15
+
+###
+# ========================================
+# 4. GET BOOKINGS BY UNIT
+# ========================================
+GET http://localhost:5000/meeting-bookings/unit/IT
+
+###
+# ========================================
+# 5. CREATE MEETING BOOKINGS - VARIOUS SCENARIOS
+# ========================================
+
+# Example 1: IT Department - Morning Meeting with Snack
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "IT",
+    "roomNumber": "R001",
+    "roomCapacity": 10,
+    "meetingDate": "2024-01-15",
+    "startTime": "09:00:00",
+    "endTime": "11:00:00",
+    "participantCount": 8,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 150000
+}
+
+###
+# Example 2: HR Department - Lunch Meeting
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "HR",
+    "roomNumber": "R002",
+    "roomCapacity": 15,
+    "meetingDate": "2024-01-16",
+    "startTime": "12:00:00",
+    "endTime": "14:00:00",
+    "participantCount": 12,
+    "consumptionType": "makan_siang",
+    "consumptionAmount": 300000
+}
+
+###
+# Example 3: Finance Department - Afternoon Meeting with Snack
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Finance",
+    "roomNumber": "R003",
+    "roomCapacity": 8,
+    "meetingDate": "2024-01-17",
+    "startTime": "15:00:00",
+    "endTime": "17:00:00",
+    "participantCount": 6,
+    "consumptionType": "snack_sore",
+    "consumptionAmount": 120000
+}
+
+###
+# Example 4: Marketing Department - Large Meeting
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Marketing",
+    "roomNumber": "R004",
+    "roomCapacity": 20,
+    "meetingDate": "2024-01-18",
+    "startTime": "10:00:00",
+    "endTime": "12:00:00",
+    "participantCount": 18,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 250000
+}
+
+###
+# Example 5: Operations Department - Full Day Meeting
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Operations",
+    "roomNumber": "R005",
+    "roomCapacity": 12,
+    "meetingDate": "2024-01-19",
+    "startTime": "08:00:00",
+    "endTime": "17:00:00",
+    "participantCount": 10,
+    "consumptionType": "makan_siang",
+    "consumptionAmount": 400000
+}
+
+###
+# ========================================
+# 6. UPDATE MEETING BOOKINGS
+# ========================================
+
+# Update Example 1: Change time and consumption
+PUT http://localhost:5000/meeting-bookings/1
+Content-Type: application/json
+
+{
+    "unit": "IT",
+    "roomNumber": "R001",
+    "roomCapacity": 10,
+    "meetingDate": "2024-01-15",
+    "startTime": "10:00:00",
+    "endTime": "12:00:00",
+    "participantCount": 6,
+    "consumptionType": "snack_sore",
+    "consumptionAmount": 120000
+}
+
+###
+# Update Example 2: Change room and increase participants
+PUT http://localhost:5000/meeting-bookings/2
+Content-Type: application/json
+
+{
+    "unit": "HR",
+    "roomNumber": "R003",
+    "roomCapacity": 15,
+    "meetingDate": "2024-01-16",
+    "startTime": "12:00:00",
+    "endTime": "14:00:00",
+    "participantCount": 14,
+    "consumptionType": "makan_siang",
+    "consumptionAmount": 350000
+}
+
+###
+# ========================================
+# 7. DELETE MEETING BOOKINGS
+# ========================================
+DELETE http://localhost:5000/meeting-bookings/1
+
+###
+DELETE http://localhost:5000/meeting-bookings/2
+
+###
+# ========================================
+# 8. ERROR SCENARIO EXAMPLES
+# ========================================
+
+# Error Example 1: Missing required fields
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "IT",
+    "roomNumber": "R001",
+    "roomCapacity": 10
+}
+
+###
+# Error Example 2: Participants exceed room capacity
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "IT",
+    "roomNumber": "R001",
+    "roomCapacity": 5,
+    "meetingDate": "2024-01-15",
+    "startTime": "09:00:00",
+    "endTime": "11:00:00",
+    "participantCount": 10,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 150000
+}
+
+###
+# Error Example 3: End time before start time
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "IT",
+    "roomNumber": "R001",
+    "roomCapacity": 10,
+    "meetingDate": "2024-01-15",
+    "startTime": "11:00:00",
+    "endTime": "09:00:00",
+    "participantCount": 8,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 150000
+}
+
+###
+# Error Example 4: Invalid consumption type
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "IT",
+    "roomNumber": "R001",
+    "roomCapacity": 10,
+    "meetingDate": "2024-01-15",
+    "startTime": "09:00:00",
+    "endTime": "11:00:00",
+    "participantCount": 8,
+    "consumptionType": "makan_malam",
+    "consumptionAmount": 150000
+}
+
+###
+# ========================================
+# 9. QUERY EXAMPLES
+# ========================================
+
+# Get all bookings for a specific date
+GET http://localhost:5000/meeting-bookings/date/2024-01-15
+
+###
+# Get all bookings for IT department
+GET http://localhost:5000/meeting-bookings/unit/IT
+
+###
+# Get all bookings for HR department
+GET http://localhost:5000/meeting-bookings/unit/HR
+
+###
+# Get all bookings for Finance department
+GET http://localhost:5000/meeting-bookings/unit/Finance
+
+###
+# ========================================
+# 10. BULK OPERATIONS EXAMPLES
+# ========================================
+
+# Create multiple bookings for the same day
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Sales",
+    "roomNumber": "R006",
+    "roomCapacity": 6,
+    "meetingDate": "2024-01-20",
+    "startTime": "09:00:00",
+    "endTime": "10:30:00",
+    "participantCount": 4,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 80000
+}
+
+###
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Legal",
+    "roomNumber": "R007",
+    "roomCapacity": 4,
+    "meetingDate": "2024-01-20",
+    "startTime": "11:00:00",
+    "endTime": "12:00:00",
+    "participantCount": 3,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 60000
+}
+
+###
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Engineering",
+    "roomNumber": "R008",
+    "roomCapacity": 12,
+    "meetingDate": "2024-01-20",
+    "startTime": "14:00:00",
+    "endTime": "16:00:00",
+    "participantCount": 10,
+    "consumptionType": "snack_sore",
+    "consumptionAmount": 180000
+}
+
+###
+# ========================================
+# 11. EDGE CASE EXAMPLES
+# ========================================
+
+# Edge Case 1: Maximum capacity booking
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Training",
+    "roomNumber": "R009",
+    "roomCapacity": 25,
+    "meetingDate": "2024-01-21",
+    "startTime": "09:00:00",
+    "endTime": "17:00:00",
+    "participantCount": 25,
+    "consumptionType": "makan_siang",
+    "consumptionAmount": 500000
+}
+
+###
+# Edge Case 2: Small meeting with minimal consumption
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Admin",
+    "roomNumber": "R010",
+    "roomCapacity": 4,
+    "meetingDate": "2024-01-22",
+    "startTime": "10:00:00",
+    "endTime": "10:30:00",
+    "participantCount": 2,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 30000
+}
+
+###
+# Edge Case 3: Very early morning meeting
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Security",
+    "roomNumber": "R011",
+    "roomCapacity": 8,
+    "meetingDate": "2024-01-23",
+    "startTime": "06:00:00",
+    "endTime": "08:00:00",
+    "participantCount": 6,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 100000
+}
+
+###
+# ========================================
+# 12. CONFLICT TESTING
+# ========================================
+
+# First booking
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Test1",
+    "roomNumber": "R012",
+    "roomCapacity": 10,
+    "meetingDate": "2024-01-24",
+    "startTime": "10:00:00",
+    "endTime": "12:00:00",
+    "participantCount": 8,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 150000
+}
+
+###
+# Conflicting booking (should fail)
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Test2",
+    "roomNumber": "R012",
+    "roomCapacity": 10,
+    "meetingDate": "2024-01-24",
+    "startTime": "11:00:00",
+    "endTime": "13:00:00",
+    "participantCount": 8,
+    "consumptionType": "snack_siang",
+    "consumptionAmount": 150000
+}
+
+###
+# Non-conflicting booking (should succeed)
+POST http://localhost:5000/meeting-bookings
+Content-Type: application/json
+
+{
+    "unit": "Test3",
+    "roomNumber": "R012",
+    "roomCapacity": 10,
+    "meetingDate": "2024-01-24",
+    "startTime": "14:00:00",
+    "endTime": "16:00:00",
+    "participantCount": 8,
+    "consumptionType": "snack_sore",
+    "consumptionAmount": 150000
+}
